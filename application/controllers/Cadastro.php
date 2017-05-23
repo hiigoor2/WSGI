@@ -1,7 +1,9 @@
 <?php
 class Cadastro extends CI_Controller{
 	public function index() {
+		$this->load->view('templates/html_header');
 		$this->load->view('pages/cadastro/formulario');
+		$this->load->view('templates/html_footer');
 	}
 
 	public function cadastrar() {
