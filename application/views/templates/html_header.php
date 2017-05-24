@@ -12,8 +12,14 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?= base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="<?= base_url(); ?>assets/css/estilo_cadastro.css" rel="stylesheet">
   </head>
 
   <body>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
