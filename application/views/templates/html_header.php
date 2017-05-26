@@ -20,6 +20,24 @@
   <body>
 <div class="container">
 <div class="row">
-    <div class="col-md-12">
-        
+    <div class="col-md-8">
+        <img src="#" alt="Logo da empresa ou topo"/>
+        <h1>Titulo do Sistema</h1>
+        <br/><br/>
     </div>
+    <div class="col-md-4">
+        <?php if(isset($nome_usuario) && isset($nivel)):?>
+        <div class="col-md-8" style="margin-top: 50px;">
+            <p class="bottom text-right"><?php echo $nome_usuario; ?></p>
+            <p class="bottom text-right"><?php echo $nivel; ?></p>
+        </div>
+        
+        <div class="col-md-4" style="margin-top: 50px;">
+        <img class="img-responsive img-rounded" src="<?= base_url().(isset($foto)?$foto:'assets/imgs/imagem.jpg') ?>" alt="Foto do usuário"/>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="row">

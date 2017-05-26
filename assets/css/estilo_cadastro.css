@@ -10,4 +10,5 @@ and open the template in the editor.
 
 .menu-lateral {
     border: 1px solid #000;
+    min-height: 600px;
 }

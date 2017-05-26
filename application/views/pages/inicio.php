@@ -1,8 +1,3 @@
-<html>
-<head>
-<title>Ola Mundo!</title>
-</head>
-<body>
-<h1>Testando CodeIgniter. </h1>
-</body>
-</html>
+<div class="col-md-10">
+<h1>Página inicial. </h1>
+</div>
