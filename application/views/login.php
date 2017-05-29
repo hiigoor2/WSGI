@@ -8,7 +8,7 @@
                 <?php echo $mensagem; ?>
                 </div>
             <?php endif;?>
-            <form action="<?= base_url('Login/Autenticar') ?>" method="post">
+            <form action="<?= base_url('autenticar') ?>" method="post">
                 <div class="form-login">
                     <h4>Bem vindo de volta.</h4>
                     <input type="text" name="login" id="login" class="form-control input-sm chat-input" placeholder="login" />

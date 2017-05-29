@@ -7,10 +7,10 @@
  */
 
 class Nivel_model extends CI_Model{
-    public $niv_codigo;
-    public $niv_descricao;
+    private $niv_codigo;
+    private $niv_descricao;
     
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
     
