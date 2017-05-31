@@ -1,6 +1,4 @@
-<div class="row">
-<div class="col-md-12">
-    <nav class="navbar navbar-inverse">
+    <nav class="row navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -18,5 +16,3 @@
             </div>
         </div>
     </nav>
-</div>
-</div>
