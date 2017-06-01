@@ -22,7 +22,7 @@ class Usuario extends CI_Controller {
         $this->load->view('templates/html_header',$dados);
         $this->load->view('templates/html_menu_topo');
         $this->load->view('templates/html_menu_lateral',$dados);
-        $this->load->view('pages/cadastro/gerenciar_usuario');
+        $this->load->view('pages/gerenciar/usuario/gerenciar_usuario');
         $this->load->view('templates/html_footer');
     }
     

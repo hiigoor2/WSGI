@@ -7,53 +7,84 @@
  */
 
 class Grupamento_model extends CI_Model{
-    private $gru_codigo;
-    private $gru_descricao;
+    private $codigo;
+    private $descricao;
     
-    function __construct() {
+    function __construct($codigo = null,$descricao = null) {
         parent::__construct();
+        $this->codigo = $codigo;
+        $this->descricao = $descricao;
     }
     
     public function getCodigo(){
-        return $this->gru_codigo;
+        return $this->codigo;
     }
     
     public function setCodigo($valor){
-        $this->gru_codigo = $valor;
+        $this->codigo = $valor;
     }
     
     public function getDescricao(){
-        return $this->gru_descricao;
+        return $this->descricao;
     }
     
     public function setDescricao($valor){
-        $this->gru_descricao = $valor;
+        $this->descricao = $valor;
     }
     
-    public function Insert($dados){
+    public function Insert(){
+        
         $data = array(
-                'gru_descricao' => $dados['descricao'],
+                'gru_descricao' => $this->descricao,
         );
         return $this->db->insert('grupamento',$data);
     }
-    public function Listar(){
-        return $this->db->get('grupamento')->result_array();
-    }
-    public function Select($dados){
-        if(isset($dados['codigo'])){
-            $this->db->where('gru_codigo', $dados['codigo']);
+    
+    public function Listar($limit=null, $offset = null){
+        $this->db->select('*');
+        if($limit>0 && $offset>=0){
+            $this->db->limit($limit);
+            $this->db->offset($offset);
         }
-        if(isset($dados['descricao'])){
-            $this->db->where('gru_descricao',$dados['descricao']);
+        $result = $this->db->get('grupamento')->result();
+        $grupamentos = array();
+        foreach ($result as $ob){
+            array_push($grupamentos, new Grupamento_model($ob->gru_codigo,$ob->gru_descricao));
         }
-        return $this->db->get('grupamento')->result_array();
+        return $grupamentos;
     }
-    public function Update($dados){
-        $this->db->where('gru_codigo',$dados['codigo']);
-        return $this->db->update('grupamento',array('gru_descricao'=>$dados['descricao']));
+    
+    public function Count(){
+        $this->db->select('count(*) as total');
+        return $this->db->get('grupamento')->result();
     }
-    public function Delete($dados){
-        $this->db->where('gru_codigo',$dados['codigo']);
-        return $this->db->delete('grupamento');
+    
+    public function Select(){
+        if(isset($this->codigo)){
+            $this->db->where('gru_codigo', $this->codigo);
+        }
+        if(isset($this->descricao)){
+            $this->db->where('gru_descricao',$this->descricao);
+        }
+        $result = $this->db->get('grupamento')->result_array();
+        $grupamentos = array();
+        foreach ($result as $ob){
+            array_push($grupamentos, new Grupamento_model($ob['gru_codigo'],$ob['gru_descricao']));
+        }
+        return $grupamentos;
+    }
+    public function Update(){
+        if(isset($this->codigo)){
+            $this->db->where('gru_codigo',$this->codigo);
+            return $this->db->update('grupamento',array('gru_descricao'=>$this->descricao));
+        }
+        return false;
+    }
+    public function Delete(){
+        if(isset($this->codigo)){
+            $this->db->where('gru_codigo',$this->codigo);
+            return $this->db->delete('grupamento');
+        }
+        return false;
     }
 }

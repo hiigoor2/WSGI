@@ -18,25 +18,25 @@
     </head>
 
     <body>
-<!-- Wrap all page content here -->
-<div class="container" id="wrap">
-        <div class="col-md-offset-2 col-md-8 col-md-offset-2 corpo">
+    <!-- Wrap all page content here -->
+    <div class="container" id="wrap">
+        <div class="col-md-offset-1 col-md-10 col-md-offset-1 corpo">
             <div class="row">
-                <header class="col-sm-12 header">
-                    <div class="col-md-8">
+                <header id="head" class="col-sm-12 header">
+                    <div class="col-xs-12 col-sm-8">
                         <img src="#" alt="Logo da empresa ou topo"/>
                         <h1>Titulo do Sistema</h1>
                         <br/><br/>
                     </div>
-                    <div class="col-md-4" id="area_user">
+                    <div class="col-xs-12 col-sm-4 panel panel-title" id="area_user">
                         <?php if (isset($nome_usuario) && isset($nivel)): ?>
-                            <div class="col-md-8" id="area_user_dados">
-                                <p class="bottom text-right"><?php echo $nome_usuario; ?></p>
-                                <p class="bottom text-right"><?php echo $nivel; ?></p>
+                            <div class="col-xs-12 col-sm-12 col-md-8" id="area_user_dados">
+                                <p class="text-right"><?php echo $nome_usuario; ?></p>
+                                <p class="text-right"><?php echo $nivel; ?></p>
                             </div>
 
-                        <div class="col-md-4" id="area_user_img">
-                                <img class="img-responsive img-thumbnail" src="<?= base_url() . (isset($foto) ? $foto : 'assets/imgs/imagem.jpg') ?>" alt="Foto do usuário"/>
+                            <div class="col-xs-0 col-sm-12 col-md-4" id="area_user_img">
+                                <img width="100%" height="100%" class="img thumbnail" src="<?= base_url() . (isset($foto) ? $foto : 'assets/imgs/imagem.jpg') ?>" alt="Foto do usuário"/>
                             </div>
                         <?php endif; ?>
                     </div>
