@@ -46,7 +46,7 @@ class Grupamento_model extends CI_Model{
             $this->db->limit($limit);
             $this->db->offset($offset);
         }
-        $result = $this->db->get('grupamento')->result();
+        $result = $this->db->get('grupamento')->result_object();
         $grupamentos = array();
         foreach ($result as $ob){
             array_push($grupamentos, new Grupamento_model($ob->gru_codigo,$ob->gru_descricao));

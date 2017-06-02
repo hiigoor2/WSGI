@@ -63,6 +63,7 @@ nav {
 #conteudo{
     padding-top: 20px;
     padding-bottom: 50px;
+    min-height: 500px;
 }
 
 #conteudo div{

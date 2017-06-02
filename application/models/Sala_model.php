@@ -2,48 +2,60 @@
 
 class Sala_model extends My_model {
 
-    private $sal_codigo;
-    private $sal_descricao;
-    private $sal_capacidade;
+    private $codigo;
+    private $descricao;
+    private $capacidade;
 
-    function __construct() {
+    function __construct($codigo = null,$descricao = null,$capacidade = null) {
         parent::__construct();
+        $this->codigo = $codigo;
+        $this->descricao = $descricao;
+        $this->capacidade = $capacidade;
     }
 
     public function getCodigo() {
-        return $this->sal_codigo;
+        return $this->codigo;
     }
 
     public function setCodigo($codigo) {
-        $this->sal_codigo = $codigo;
+        $this->codigo = $codigo;
     }
 
     public function getDescricao() {
-        return $this->sal_descricao;
+        return $this->descricao;
     }
 
     public function getCapacidade() {
-        return $this->sal_capacidade;
+        return $this->capacidade;
     }
 
     public function setDescricao($descricao) {
-        $this->sal_descricao = $descricao;
+        $this->descricao = $descricao;
     }
 
     public function setCapacidade($capacidade) {
-        $this->sal_capacidade = $capacidade;
+        $this->capacidade = $capacidade;
     }
 
     public function Insert() {
-        return $this->db->insert('sala', $this);
+        $data = array(
+                'sal_descricao' => $this->descricao,
+                'sal_capacidade' => $this->capacidade,
+        );
+        return $this->db->insert('sala',$data);
     }
 
-    public function Listar($limit = 0, $offset = 0) {
-        if ($limit > 0 && $offset >= 0) {
+    public function Listar($limit = null, $offset = null) {
+        if (isset($limit) && $limit>0 && isset($offset) && $offset>=0) {
             $this->db->limit($limit);
             $this->db->offset($offset);
         }
-        return $this->db->get('sala')->result($this);
+        $result =  $this->db->get('sala')->result_object();
+        $salas = array();
+        foreach ($result as $ob){
+            array_push($salas, new Sala_model($ob->sal_codigo,$ob->sal_descricao,$ob->sal_capacidade));
+        }
+        return $salas;
     }
 
     public function Count() {
@@ -52,26 +64,32 @@ class Sala_model extends My_model {
     }
 
     public function Select() {
-        if (isset($dados['codigo'])) {
-            $this->db->where('sal_codigo', $dados['codigo']);
+        if (isset($this->codigo)) {
+            $this->db->where('sal_codigo', $this->codigo);
         }
-        if (isset($dados['descricao'])) {
-            $this->db->where('sal_descricao', $dados['descricao']);
+        if (isset($this->descricao)) {
+            $this->db->where('sal_descricao', $this->descricao);
         }
-        if (isset($dados['capacidade'])) {
-            $this->db->where('sal_capacidade', $dados['capacidade']);
+        if (isset($this->capacidade)) {
+            $this->db->where('sal_capacidade', $this->capacidade);
         }
         return $this->db->get('sala')->result_array();
     }
 
     public function Update() {
-        $this->db->where('sal_codigo', $this->sal_codigo);
-        return $this->db->update('sala', $this);
+        if(isset($this->codigo)){
+            $this->db->where('sal_codigo', $this->codigo);
+            return $this->db->update('sala', $this);
+        }
+        return null;
     }
 
     public function Delete() {
-        $this->db->where('sal_codigo', $this->sal_codigo);
-        return $this->db->delete('sala');
+        if(isset($this->codigo)){
+            $this->db->where('sal_codigo', $this->codigo);
+            return $this->db->delete('sala');
+        }
+        return null;
     }
 
     /**

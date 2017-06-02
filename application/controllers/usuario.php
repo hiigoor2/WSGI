@@ -36,4 +36,16 @@ class Usuario extends CI_Controller {
 //            echo 'Erro ao inserir dados';
 //        }
     }
+    
+    public function Novo(){
+        $this->load->library('verifica_sessao');
+        $dados = $this->verifica_sessao->UsuarioLogado($this->session->get_userdata()['usuario_logado']);
+        
+        /*carrega a view */
+        $this->load->view('templates/html_header',$dados);
+        $this->load->view('templates/html_menu_topo');
+        $this->load->view('templates/html_menu_lateral',$dados);
+        $this->load->view('pages/gerenciar/usuario/form_cadastro_usuario');
+        $this->load->view('templates/html_footer');
+    }
 }
